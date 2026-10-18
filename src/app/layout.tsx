@@ -3,6 +3,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { SITE } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -21,8 +22,18 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: { default: "Portfolio", template: "%s — Portfolio" },
-  description: "Personal portfolio.",
+  metadataBase: new URL(SITE.url),
+  title: { default: SITE.title, template: `%s — ${SITE.name}` },
+  description: SITE.description,
+  authors: [{ name: SITE.name, url: SITE.github }],
+  openGraph: {
+    type: "website",
+    siteName: SITE.name,
+    title: SITE.title,
+    description: SITE.description,
+    url: SITE.url,
+  },
+  twitter: { card: "summary_large_image" },
 };
 
 export const viewport: Viewport = {
