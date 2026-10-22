@@ -128,3 +128,10 @@
     @apply font-sans;
   }
 }
+
+/* theme swap: just a soft fade */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.35s;
+  animation-timing-function: ease;
+}
